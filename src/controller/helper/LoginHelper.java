@@ -6,8 +6,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.bean.Usuario;
 import model.conn.ConnectionFactory;
+import view.CreateJLabel;
 import view.login;
 
 public class LoginHelper {
@@ -23,21 +25,22 @@ public class LoginHelper {
         String apelido = view.getjFieldApelido().getText().toUpperCase();
         String senha = view.getjFieldSenha().getText();
         Connection conn = null;
+        Usuario usuario = null;
         
         try {
             conn = new ConnectionFactory().getConnection();
             UsuarioDao dao = new UsuarioDao( conn );
             
-            Usuario usuario = dao.read(apelido, senha);
+            usuario = dao.read(apelido, senha);
+            conn.close();
         } catch(SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-        }   
-        
-        try {
-            conn.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        if(usuario != null) {
+            CreateJLabel form = new CreateJLabel(usuario.getID());
+            form.setVisible(true);
+            view.dispose();
+        }
     }
 }

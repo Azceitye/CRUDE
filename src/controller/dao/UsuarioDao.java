@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import model.bean.Usuario;
 
 public class UsuarioDao {
-    private final String tbNome = "tb_usuario";
     private final Connection connection;
     
     
@@ -18,23 +17,26 @@ public class UsuarioDao {
         this.connection = connection;
     }
     
-    public void create(String apelido, String senha) {
-        String sql = "INSERT INTO `" + tbNome + "`(`apelido_USUARIO`, `senha_USUARIO`) VALUES (?,?)";
+    public boolean create(String apelido, String senha) {
+        String sql = "INSERT INTO `tb_usuario`(`apelido_USUARIO`, `senha_USUARIO`) VALUES (?,?)";
+        boolean result=false;
         
         try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
             stmt.setString(1, apelido.toUpperCase());
             stmt.setString(2, senha);
             
-            stmt.execute();
+            result = stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return result;
     }
     
     // Para o LOGIN
-    public Usuario read(String apelido, String senha) {
+    public Usuario read(String apelido, String senha) throws SQLException {
         Usuario usuario = null;
-        String sql = "SELECT * FROM `" + tbNome + "` WHERE `apelido_USUARIO` = ? AND `senha_USUARIO` = ?";
+        String sql = "SELECT * FROM `tb_usuario` WHERE `apelido_USUARIO` = ? AND `senha_USUARIO` = ?";
         
         try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
             stmt.setString(1, apelido);
@@ -47,9 +49,7 @@ public class UsuarioDao {
                         rs.getString("apelido_USUARIO")
                 );
             } 
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         
         return usuario;
     }

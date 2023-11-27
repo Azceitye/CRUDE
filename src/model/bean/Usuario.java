@@ -18,4 +18,10 @@ public class Usuario {
     public void setApelido(String apelido) {
         this.apelido = apelido;
     }
+
+    public int getID() {
+        return ID;
+    }
+    
+    
 }
