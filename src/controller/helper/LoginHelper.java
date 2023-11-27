@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.bean.Usuario;
 import model.conn.ConnectionFactory;
-import view.CreateJLabel;
+import view.Formulario;
 import view.login;
 
 public class LoginHelper {
@@ -38,7 +38,7 @@ public class LoginHelper {
         }
         
         if(usuario != null) {
-            CreateJLabel form = new CreateJLabel(usuario.getID());
+            Formulario form = new Formulario(usuario.getID());
             form.setVisible(true);
             view.dispose();
         }

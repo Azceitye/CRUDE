@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.bean.Usuario;
@@ -17,20 +18,25 @@ public class UsuarioDao {
         this.connection = connection;
     }
     
-    public boolean create(String apelido, String senha) {
+    public Long create(String apelido, String senha) {
         String sql = "INSERT INTO `tb_usuario`(`apelido_USUARIO`, `senha_USUARIO`) VALUES (?,?)";
         boolean result=false;
+        Long ID = null;
         
-        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, apelido.toUpperCase());
             stmt.setString(2, senha);
             
-            result = stmt.executeUpdate() > 0;
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if(rs.first()) {
+                ID = rs.getLong(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return result;
+        return ID;
     }
     
     // Para o LOGIN
