@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.bean.Usuario;
 
 public class UsuarioDao {
-    private final String tbNome = "tb_usuario";
     private final Connection connection;
     
     
@@ -18,23 +18,31 @@ public class UsuarioDao {
         this.connection = connection;
     }
     
-    public void create(String apelido, String senha) {
-        String sql = "INSERT INTO `" + tbNome + "`(`apelido_USUARIO`, `senha_USUARIO`) VALUES (?,?)";
+    public Long create(String apelido, String senha) {
+        String sql = "INSERT INTO `tb_usuario`(`apelido_USUARIO`, `senha_USUARIO`) VALUES (?,?)";
+        boolean result=false;
+        Long ID = null;
         
-        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, apelido.toUpperCase());
             stmt.setString(2, senha);
             
-            stmt.execute();
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if(rs.first()) {
+                ID = rs.getLong(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return ID;
     }
     
     // Para o LOGIN
-    public Usuario read(String apelido, String senha) {
+    public Usuario read(String apelido, String senha) throws SQLException {
         Usuario usuario = null;
-        String sql = "SELECT * FROM `" + tbNome + "` WHERE `apelido_USUARIO` = ? AND `senha_USUARIO` = ?";
+        String sql = "SELECT * FROM `tb_usuario` WHERE `apelido_USUARIO` = ? AND `senha_USUARIO` = ?";
         
         try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
             stmt.setString(1, apelido);
@@ -47,9 +55,7 @@ public class UsuarioDao {
                         rs.getString("apelido_USUARIO")
                 );
             } 
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         
         return usuario;
     }

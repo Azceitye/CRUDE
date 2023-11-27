@@ -14,11 +14,9 @@ import controller.helper.LoginHelper;
  */
 public class login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login
-     */
+    
     public login() {
-        initComponents();
+        initComponents();        
     }
 
     /**
@@ -39,23 +37,24 @@ public class login extends javax.swing.JFrame {
         jBtnLogar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocation(new java.awt.Point(400, 100));
+        setResizable(false);
 
-        jLabelLogin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabelLogin.setText("LOGIN");
-        getContentPane().add(jLabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
+        jLabelApelido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelApelido.setText("Apelido");
-        getContentPane().add(jLabelApelido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jFieldApelido.setToolTipText("Apelido");
-        getContentPane().add(jFieldApelido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 229, -1));
+        jFieldApelido.setPreferredSize(new java.awt.Dimension(64, 30));
 
+        jLabelSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelSenha.setText("Senha");
-        getContentPane().add(jLabelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jFieldSenha.setToolTipText("Senha");
-        getContentPane().add(jFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 230, -1));
+        jFieldSenha.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jLinkCadastro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLinkCadastro.setText("Ainda não está cadastrado?");
@@ -65,7 +64,6 @@ public class login extends javax.swing.JFrame {
                 jLinkCadastroMousePressed(evt);
             }
         });
-        getContentPane().add(jLinkCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 170, 20));
 
         jBtnLogar.setText("LOGAR");
         jBtnLogar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,7 +71,56 @@ public class login extends javax.swing.JFrame {
                 jBtnLogarMousePressed(evt);
             }
         });
-        getContentPane().add(jBtnLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 97, 42));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabelLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabelApelido))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jFieldApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabelSenha))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(jBtnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLinkCadastro)
+                .addGap(67, 67, 67))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabelLogin)
+                .addGap(48, 48, 48)
+                .addComponent(jLabelApelido)
+                .addGap(14, 14, 14)
+                .addComponent(jFieldApelido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabelSenha)
+                .addGap(4, 4, 4)
+                .addComponent(jFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jLinkCadastro)
+                .addGap(31, 31, 31)
+                .addComponent(jBtnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

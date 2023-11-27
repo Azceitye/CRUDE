@@ -39,25 +39,25 @@ public class cadastro extends javax.swing.JFrame {
         jBtnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setResizable(false);
 
         jLabelCadastro.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabelCadastro.setText("Cadastro de Usuário");
-        getContentPane().add(jLabelCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
+        jLabelApelido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelApelido.setText("Apelido");
-        getContentPane().add(jLabelApelido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-        getContentPane().add(jFieldApelido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 250, -1));
 
+        jFieldApelido.setMinimumSize(new java.awt.Dimension(64, 30));
+
+        jLabelSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelSenha.setText("Senha");
-        getContentPane().add(jLabelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
+        jFieldSenha.setPreferredSize(new java.awt.Dimension(64, 30));
         jFieldSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFieldSenhaActionPerformed(evt);
             }
         });
-        getContentPane().add(jFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 250, -1));
 
         jLinkLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLinkLogin.setText("Já é cadastrado?");
@@ -67,7 +67,6 @@ public class cadastro extends javax.swing.JFrame {
                 jLinkLoginMousePressed(evt);
             }
         });
-        getContentPane().add(jLinkLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
 
         jBtnCadastrar.setText("CADASTRAR");
         jBtnCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,7 +74,54 @@ public class cadastro extends javax.swing.JFrame {
                 jBtnCadastrarMousePressed(evt);
             }
         });
-        getContentPane().add(jBtnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 130, 40));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jLabelCadastro))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jLabelApelido))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jFieldApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jLabelSenha))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(110, 110, 110)
+                            .addComponent(jLinkLogin))))
+                .addGap(40, 40, 40))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabelCadastro)
+                .addGap(48, 48, 48)
+                .addComponent(jLabelApelido)
+                .addGap(14, 14, 14)
+                .addComponent(jFieldApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabelSenha)
+                .addGap(14, 14, 14)
+                .addComponent(jFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLinkLogin)
+                .addGap(30, 30, 30)
+                .addComponent(jBtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
