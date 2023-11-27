@@ -35,6 +35,10 @@ public class CampoText extends JPanel {
         gbc.gridx = 0; 
         
         
+        GridBagConstraints gbcControls = new GridBagConstraints();
+        gbcControls.anchor = GridBagConstraints.EAST;
+        gbcControls.gridx = 0; 
+        
         JButton btnAtualizar = new JButton("Atualizar");
         btnAtualizar.addActionListener(new ActionListener() {
             @Override
@@ -51,8 +55,8 @@ public class CampoText extends JPanel {
             }
         });
             
-        add(btnAtualizar);
-        add(btnApagar);
+        add(btnAtualizar, gbcControls);
+        add(btnApagar, gbcControls);
         
         // <-- Titulo -->
         int tamanhoTitulo = 4;

@@ -4,7 +4,7 @@
  */
 package controller.helper;
 
-import view.cadastro;
+import view.Cadastro;
 import controller.dao.UsuarioDao;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,9 +17,9 @@ import view.Formulario;
 
 public class CadastroHelper {
     
-    private final cadastro view;
+    private final Cadastro view;
     
-    public CadastroHelper(cadastro view) {
+    public CadastroHelper(Cadastro view) {
         this.view = view;
     }
     

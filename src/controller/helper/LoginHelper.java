@@ -10,14 +10,14 @@ import javax.swing.JOptionPane;
 import model.bean.Usuario;
 import model.conn.ConnectionFactory;
 import view.Formulario;
-import view.login;
+import view.Login;
 
 public class LoginHelper {
     
-    private final login view;
+    private final Login view;
     
     
-    public LoginHelper(login view) {
+    public LoginHelper(Login view) {
         this.view = view;
     }
     
